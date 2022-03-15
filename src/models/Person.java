@@ -5,7 +5,17 @@ public class Person {
     private String vards;
     private String uzvards;
 
-    
+    public Person(){
+        setVards("Mareks");
+        setUzvards("Robalds");
+        setVecums(22);
+    }
+
+    public Person(String vards, String uzvards, int vecums){
+        setVards(vards);
+        setUzvards(uzvards);
+        setVecums(vecums);
+    }
 
     /**
      * @return int return the vecums
@@ -17,12 +27,11 @@ public class Person {
     /**
      * @param vecums the vecums to set
      */
-    public void setVecums(int vecums) throws Exception {
+    public void setVecums(int vecums) {
         if(vecums>0){
             this.vecums = vecums;
         } else {
-            Exception exc = new Exception("Nederīgs vecums");
-            throw exc;
+            this.vecums = 22;
         }
     }
 
