@@ -12,11 +12,13 @@ public class Child extends Person {
     /**
      * @return String return the alergies
      */
-    public ArrayList<String> getAlergies() {
-        for (String string : alergies) {
-            System.out.println(alergies + ";");
+    public String getAlergies() {
+        String alergija = "";
+        for (String alergies : alergies) {
+            alergija += alergies + "; ";
         }
-        return null;
+        return alergija;
+        
     }
 
     /**
@@ -28,12 +30,15 @@ public class Child extends Person {
         do {
             Scanner alergijas = new Scanner(System.in);
             String aler = alergijas.nextLine();
-            alergies.add(aler);
-            if(aler == "Nav" || aler == "nav"){
+            if(aler.contains("Nav") || aler.contains("nav")){
                 done = true;
+                alergijas.close();
+            } else {
+                alergies.add(aler);
             }
 
         } while (done==false);
+
     }
 
     /**
@@ -84,7 +89,7 @@ public class Child extends Person {
         setNationality(Nationality.Latvian);
     }
 
-    public Child(String vards, String uzvards, int vecums, String alergies, int priorityForSpeachLessons, Nationality nationality) {
+    public Child(String vards, String uzvards, int vecums, int priorityForSpeachLessons, Nationality nationality) {
         super(vards, uzvards, vecums);
         setAlergies();
         this.priorityForSpeachLessons = priorityForSpeachLessons;
@@ -93,7 +98,7 @@ public class Child extends Person {
 
     @Override
     public String toString() {
-        return "Child [nationality=" + nationality + ", priorityForSpeachLessons=" + priorityForSpeachLessons + "alergies= " + getAlergies() + "]";
+        return "Child [nationality=" + nationality + ", priorityForSpeachLessons=" + priorityForSpeachLessons + ", alergies= " + getAlergies() + "]";
     }
 
     
