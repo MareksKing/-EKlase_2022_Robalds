@@ -6,9 +6,8 @@ public class Person {
     private String uzvards;
 
     public Person(){
-        setVards("Mareks");
-        setUzvards("Robalds");
-        setVecums(22);
+        setVards("Test");
+        setUzvards("Person");
     }
 
     public Person(String vards, String uzvards, int vecums){

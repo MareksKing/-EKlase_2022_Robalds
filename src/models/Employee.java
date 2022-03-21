@@ -3,15 +3,31 @@ package models;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 public class Employee extends Person {
     private int employeeId;
-    private Date contractDate;
-    private static Date defContractDate = (Date) new GregorianCalendar(2022, Calendar.MARCH, 24).getTime();
+    private long laiks = 1648072800000L;
+    private Date defContractDate = new Date(laiks);
     private String contractNumber;
+    private Date contractDate = null;
 
-    private int ids = 300;
-    //Get date to work!!!! palicis pie 3.2
+    private static int ids = 300;
+    
+    
+    public Employee() {
+        super();
+        setEmployeeId();
+        setContractDate(defContractDate);
+        setContractNumber();
+    }
+    
+    public Employee(String vards, String uzvards, int vecums, int year, int month, int day) {
+        super(vards, uzvards, vecums);
+        setEmployeeId();
+        setContractDate(year, month, day);
+        setContractNumber();
+    }
     /**
      * @return int return the employeeId
      */
@@ -34,12 +50,25 @@ public class Employee extends Person {
         return contractDate;
     }
 
+    public void setContractDate(Date contractDate){
+        this.contractDate = contractDate;
+    }
     /**
      * @param contractDate the contractDate to set
      */
-    public void setContractDate(Date contractDate) {
-        this.contractDate = contractDate;
+    public void setContractDate(int year, int month, int day) {
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Riga"));
+        cal.set(year, month, day);
+        long laiks = cal.getTimeInMillis();
+        Date contractDate = new Date(laiks);
+        if(contractDate.after(defContractDate)){
+            this.contractDate = contractDate;
+        } else {
+            return;
+        }
     }
+    
+    
 
     /**
      * @return String return the contractNumber
@@ -51,13 +80,17 @@ public class Employee extends Person {
     /**
      * @param contractNumber the contractNumber to set
      */
-    public void setContractNumber(String contractNumber) {
-        this.contractNumber = contractNumber;
+    public void setContractNumber() {
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Riga"));
+        cal.setTime(contractDate);
+        int gads = cal.get(Calendar.YEAR);
+        this.contractNumber = gads + "_" + employeeId + "_" +  super.getVards().charAt(0) + "_" +  super.getUzvards().charAt(0);
     }
 
     @Override
     public String toString() {
-        return "Employee [contractDate=" + defContractDate + "]";
+        return "Employee [contractDate=" + contractDate + ", contractNumber=" + contractNumber + ", employeeId=" + employeeId + "]";
     }
+    
 
 }
