@@ -10,15 +10,17 @@ public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
         
-        Person mareks = new Employee();
+        Person mareks = new Teacher("Mareks", "Robalds", "050600-22504", 2023, 4, 23, TeachingLevel.Youngchild);
         Person mamma = new Employee("Jana", "Robalde", "231200-22523" , 2022, 2, 25);
-        System.err.println(mareks.toString());
+        
         System.out.println(mamma.toString());
 
-        mareks = new Teacher();
+        
 
         Person janis = new Child();
         System.out.println(janis.toString());
+
+        System.out.println(mareks.toString());
         
     }
 }

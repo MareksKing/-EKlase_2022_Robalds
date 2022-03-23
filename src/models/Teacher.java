@@ -30,8 +30,15 @@ public class Teacher extends Employee {
 
     public Teacher(String vards, String uzvards, String personasKods, int year, int month, int day, TeachingLevel teachLVL) {
         super(vards, uzvards, personasKods, year, month, day);
-        setTeachLVL(TeachingLevel.Preschool);
+        setTeachLVL(teachLVL);
     }
+
+    @Override
+    public String toString() {
+        return "Teacher [" + "name= " + super.getVards() + ", surname= " + super.getUzvards() + ",personas kods= " + super.getPersonasKods() + ", teachLVL=" + teachLVL + "]";
+    }
+
+    
 
     
 
