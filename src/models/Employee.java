@@ -2,7 +2,6 @@ package models;
 
 import java.sql.Date;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 public class Employee extends Person {
@@ -22,8 +21,8 @@ public class Employee extends Person {
         setContractNumber();
     }
     
-    public Employee(String vards, String uzvards, int vecums, int year, int month, int day) {
-        super(vards, uzvards, vecums);
+    public Employee(String vards, String uzvards, String personasKods, int year, int month, int day) {
+        super(vards, uzvards, personasKods);
         setEmployeeId();
         setContractDate(year, month, day);
         setContractNumber();

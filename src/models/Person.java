@@ -1,7 +1,7 @@
 package models;
 
 public class Person {
-    private int vecums;
+    private String personasKods;
     private String vards;
     private String uzvards;
 
@@ -10,27 +10,24 @@ public class Person {
         setUzvards("Person");
     }
 
-    public Person(String vards, String uzvards, int vecums){
+    public Person(String vards, String uzvards, String personasKods){
         setVards(vards);
         setUzvards(uzvards);
-        setVecums(vecums);
+        setPersonasKods(personasKods);
     }
 
     /**
      * @return int return the vecums
      */
-    public int getVecums() {
-        return vecums;
+    public String getPersonasKods() {
+        return personasKods;
     }
 
-    /**
-     * @param vecums the vecums to set
-     */
-    public void setVecums(int vecums) {
-        if(vecums>0){
-            this.vecums = vecums;
-        } else {
-            this.vecums = 22;
+    public void setPersonasKods(String personasKods) {
+        if(personasKods!=null && personasKods.matches("\\d{6}-\\d{5}"))
+            {this.personasKods = personasKods;
+        } else{
+            this.personasKods = "notknown";
         }
     }
 

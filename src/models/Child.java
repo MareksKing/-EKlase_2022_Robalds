@@ -89,8 +89,8 @@ public class Child extends Person {
         setNationality(Nationality.Latvian);
     }
 
-    public Child(String vards, String uzvards, int vecums, int priorityForSpeachLessons, Nationality nationality) {
-        super(vards, uzvards, vecums);
+    public Child(String vards, String uzvards, String personasKods, int priorityForSpeachLessons, Nationality nationality) {
+        super(vards, uzvards, personasKods);
         setAlergies();
         this.priorityForSpeachLessons = priorityForSpeachLessons;
         this.nationality = nationality;

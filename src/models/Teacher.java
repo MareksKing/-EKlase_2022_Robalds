@@ -23,14 +23,14 @@ public class Teacher extends Employee {
         
     }
 
-    public Teacher(TeachingLevel teachLVL) {
+    public Teacher() {
         super();
-        this.teachLVL = teachLVL;
+        setTeachLVL(TeachingLevel.Preschool);
     }
 
-    public Teacher(String vards, String uzvards, int vecums, int year, int month, int day, TeachingLevel teachLVL) {
-        super(vards, uzvards, vecums, year, month, day);
-        this.teachLVL = teachLVL;
+    public Teacher(String vards, String uzvards, String personasKods, int year, int month, int day, TeachingLevel teachLVL) {
+        super(vards, uzvards, personasKods, year, month, day);
+        setTeachLVL(TeachingLevel.Preschool);
     }
 
     
