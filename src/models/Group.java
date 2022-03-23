@@ -59,7 +59,7 @@ public class Group {
         if(teacher != null) {
             this.teacher = teacher;
         }else{
-            this.teacher = new Teacher(TeachingLevel.Toddler);
+            this.teacher = new Teacher();
         }
     }
 
@@ -104,7 +104,7 @@ public class Group {
     public Group(){
         setGroupStartYear((short)2022);
         setTitle("Kamenīte");
-        setTeacher(new Teacher(TeachingLevel.Toddler));
+        setTeacher(new Teacher());
     }
 
     @Override
