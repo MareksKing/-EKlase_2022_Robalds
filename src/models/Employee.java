@@ -58,13 +58,13 @@ public class Employee extends Person {
      */
     public void setContractDate(int year, int month, int day) {
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Riga"));
-        cal.set(year, month, day);
+        cal.set(year, month - 1, day);
         long laiks = cal.getTimeInMillis();
         Date contractDate = new Date(laiks);
         if(contractDate.after(defContractDate)){
             this.contractDate = contractDate;
         } else {
-            return;
+            this.contractDate = defContractDate;
         }
     }
     
@@ -89,7 +89,7 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return "Employee [contractDate=" + contractDate + ", contractNumber=" + contractNumber + ", employeeId=" + employeeId + "]";
+        return "Employee [contractDate=" + getContractDate() + ", contractNumber=" + getContractNumber() + ", employeeId=" + employeeId + "]";
     }
     
 
