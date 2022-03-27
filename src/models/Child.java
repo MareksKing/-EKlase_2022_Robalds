@@ -5,40 +5,26 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Child extends Person {
-    private static ArrayList<String> alergies = new ArrayList<>();
+    private String alergies;
     private int priorityForSpeachLessons;
     private Nationality nationality;
-
+    
     /**
      * @return String return the alergies
      */
     public String getAlergies() {
-        String alergija = "";
-        for (String alergies : alergies) {
-            alergija += alergies + "; ";
-        }
-        return alergija;
-        
+        return alergies;
     }
-
+        
     /**
      * @param alergies the alergies to set
      */
-    public void setAlergies() {
-        boolean done = false;
-        System.out.println("Kādas alerģijas ir bērnam? Ja nav ievadiet: Nav");
-        do {
-            Scanner alergijas = new Scanner(System.in);
-            String aler = alergijas.nextLine();
-            if(aler.contains("Nav") || aler.contains("nav")){
-                done = true;
-                alergijas.close();
-            } else {
-                alergies.add(aler);
-            }
-
-        } while (done==false);
-
+    public void setAlergies(String alergija) {
+        if(alergija!=""){
+            this.alergies = alergija + "; ";
+        } else {
+            this.alergies = "Nav";
+        }
     }
 
     /**
@@ -84,21 +70,21 @@ public class Child extends Person {
 
     public Child() {
         super();
-        setAlergies();
+        setAlergies("");
         setPriorityForSpeachLessons();
         setNationality(Nationality.Latvian);
     }
 
-    public Child(String vards, String uzvards, String personasKods, int priorityForSpeachLessons, Nationality nationality) {
+    public Child(String vards, String uzvards, String personasKods, int priorityForSpeachLessons, Nationality nationality, String alergijas) {
         super(vards, uzvards, personasKods);
-        setAlergies();
-        this.priorityForSpeachLessons = priorityForSpeachLessons;
-        this.nationality = nationality;
+        setAlergies(alergijas);
+        setPriorityForSpeachLessons(priorityForSpeachLessons);
+        setNationality(nationality);
     }
 
     @Override
     public String toString() {
-        return "Child [nationality=" + nationality + ", priorityForSpeachLessons=" + priorityForSpeachLessons + ", alergies= " + getAlergies() + "]";
+        return "Child [ name=" +super.getVards() + ", surname= " +super.getUzvards() + ", nationality=" + nationality + ", priorityForSpeachLessons=" + priorityForSpeachLessons + ", alergies= " + getAlergies() + "]";
     }
 
     
