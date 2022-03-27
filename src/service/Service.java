@@ -2,6 +2,8 @@ package service;
 
 import java.util.ArrayList;
 
+import javax.swing.text.DefaultStyledDocument.ElementSpec;
+
 import models.Child;
 import models.Employee;
 import models.Person;
@@ -60,8 +62,97 @@ public class Service {
         for (Child child : allChilds) {
             System.out.println(child);
         }
+        for (Teacher teacher : allTeachers) {
+            System.out.println(teacher);
+        }
+        // removeTeacherByPK("050600-22504");
+        // removeTeacherByID(301);
+
+        for (Teacher teacher : allTeachers) {
+            System.out.println(teacher);
+        }
 
         
  
+    }
+
+    private static boolean removeTeacherByPK(String personas_kods){
+        for (Teacher teach : allTeachers) {
+            if(teach.getPersonasKods() == personas_kods){
+                allTeachers.remove(teach);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean removeTeacherByID(int ID){
+        for (Teacher teach : allTeachers) {
+            if(teach.getEmployeeId() == ID){
+                allTeachers.remove(teach);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean removeTherapistByPK(String personas_kods){
+        for (SpeachTherapist therapist : allSpeachTherapists) {
+            if(therapist.getPersonasKods() == personas_kods){
+                allSpeachTherapists.remove(therapist);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean removeTherapistByID(int ID){
+        for (SpeachTherapist therapist : allSpeachTherapists) {
+            if(therapist.getEmployeeId() == ID){
+                allSpeachTherapists.remove(therapist);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean removeChildByPK(String personas_kods){
+        for (Child child : allChilds) {
+            if(child.getPersonasKods() == personas_kods){
+                allChilds.remove(child);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean removeGroupByYear(int gads){
+        for (Group group : allGroups) {
+            if(group.getGroupStartYear() == gads){
+                allGroups.remove(group);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean removeGroupByTitle(String title){
+        for (Group group : allGroups) {
+            if(group.getTitle() == title){
+                allGroups.remove(group);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean removeGroupByTeacher(Teacher teacher){
+        for (Group group : allGroups) {
+            if(group.getTeacher() == teacher){
+                allGroups.remove(group);
+                return true;
+            }
+        }
+        return false;
     }
 }
