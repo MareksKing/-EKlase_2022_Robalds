@@ -126,9 +126,9 @@ public class Service {
         return false;
     }
 
-    private static boolean removeGroupByYear(int gads){
+    private static boolean removeGroupByYearTitleAndYear(int gads, String title, Teacher teacher){
         for (Group group : allGroups) {
-            if(group.getGroupStartYear() == gads){
+            if(group.getGroupStartYear() == gads && group.getTitle() == title && group.getTeacher() == teacher){
                 allGroups.remove(group);
                 return true;
             }
@@ -136,23 +136,50 @@ public class Service {
         return false;
     }
 
-    private static boolean removeGroupByTitle(String title){
-        for (Group group : allGroups) {
-            if(group.getTitle() == title){
-                allGroups.remove(group);
+    private static boolean addChildToGroup(Child child, Group group){
+        ArrayList<Child> childrenInGroup = new ArrayList<>();
+        childrenInGroup = group.getAllChildrenInGroup();
+        if(childrenInGroup.contains(child) == false){
+            group.addToGroup(child);
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean removeChildFromGroup(Child child, Group group){
+        ArrayList<Child> childrenInGroup = new ArrayList<>();
+        childrenInGroup = group.getAllChildrenInGroup();
+        if(childrenInGroup.contains(child) == true){
+            group.removeFromGroup(child);
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean ChangeGroup(Child child, Group noGrupa, Group uzGrupa){
+        ArrayList<Child> fromChildrenInGroup = new ArrayList<>();
+        ArrayList<Child> toChildrenInGroup = new ArrayList<>();
+        fromChildrenInGroup = noGrupa.getAllChildrenInGroup();
+        toChildrenInGroup = uzGrupa.getAllChildrenInGroup();
+        if(fromChildrenInGroup.contains(child) == true){
+            noGrupa.removeFromGroup(child);
+            if(toChildrenInGroup.contains(child) == false){
+                uzGrupa.addToGroup(child);
                 return true;
             }
         }
         return false;
     }
 
-    private static boolean removeGroupByTeacher(Teacher teacher){
-        for (Group group : allGroups) {
-            if(group.getTeacher() == teacher){
-                allGroups.remove(group);
+    private static boolean subscribeChildToSpeachLessonsByPK(String personas_kods, SpeachTherapist therapist){
+        for (Child child : allChilds) {
+            if(child.getPersonasKods() == personas_kods){
+                therapist.addChildByPriority(child);
                 return true;
             }
         }
         return false;
     }
+
+    
 }
