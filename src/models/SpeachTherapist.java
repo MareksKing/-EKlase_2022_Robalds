@@ -3,16 +3,16 @@ package models;
 import java.util.PriorityQueue;
 
 public class SpeachTherapist extends Employee{
+    PriorityQueue<Child> AllChildrenAtSpeachLessons = new PriorityQueue<>();
     private String workingMethods;
 
-    // public void setAllChildrenAtSpeachLessons(PriorityQueue<Child> allChildren){
+    public void setAllChildrenAtSpeachLessons(PriorityQueue<Child> allChildren){
+        AllChildrenAtSpeachLessons.addAll(allChildren);
+    }
 
-    // }
-
-    // public PriorityQueue<Child> getAllChildrenAtSpeachLessons(){
-    //     PriorityQueue<Child> childrenAtSpeachLessons = new PriorityQueue<>();
-
-    // }
+    public PriorityQueue<Child> getAllChildrenAtSpeachLessons(){
+        return AllChildrenAtSpeachLessons;
+    }
 
     public String getWorkingMethods(){
         return workingMethods;
@@ -41,9 +41,12 @@ public class SpeachTherapist extends Employee{
         return "SpeachTherapist [workingMethods=" + workingMethods + "]";
     }
 
-    // public int addChildByPriority(Child child){
-
-    // }
+    public void addChildByPriority(Child child){
+        int priority = child.getPriorityForSpeachLessons();
+        if(priority >=1 && priority <= 4){
+            AllChildrenAtSpeachLessons.add(child);
+        }
+    }
     
 
     
