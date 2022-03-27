@@ -181,5 +181,35 @@ public class Service {
         return false;
     }
 
-    
+    private static void showAllTeachers(){
+        for (Teacher teacher : allTeachers) {
+            System.out.println(teacher);
+        }
+    }
+
+    private static void showAllSpeachTherapist(){
+        for (SpeachTherapist therapist : allSpeachTherapists) {
+            System.out.println(therapist);
+        }
+    }
+
+    private static void showAllChildrenInGroup(Group group){
+        group.getAllChildrenInGroup();
+    }
+
+    private static void showAllChildrenInSpeachLessonsByTherapistPK(String personas_kods){
+        for (SpeachTherapist therapist : allSpeachTherapists) {
+            if(therapist.getPersonasKods() == personas_kods){
+                therapist.getAllChildrenAtSpeachLessons();
+            }
+        }
+    }
+
+    private static void showAllChildrenByGroupStartYear(short gads){
+        for (Group group : allGroups) {
+            if(group.getGroupStartYear() == gads){
+                group.getAllChildrenInGroup();
+            }
+        }
+    }
 }
