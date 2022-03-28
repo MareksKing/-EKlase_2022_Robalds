@@ -1,6 +1,5 @@
 package models;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Group {
@@ -98,19 +97,26 @@ public class Group {
     public Group(short groupYear, String title, Teacher teacher) {
         setGroupStartYear(groupYear);
         setTitle(title);
-        setTeacher(teacher);   
+        setTeacher(teacher);  
+        setAllChildrenInGroup(allChildrenInGroup); 
     }
 
     public Group(){
         setGroupStartYear((short)2022);
         setTitle("Kamenīte");
         setTeacher(new Teacher());
+        setAllChildrenInGroup(allChildrenInGroup);
     }
 
     @Override
     public String toString() {
         return "Group [groupStartYear=" + groupStartYear + ", teacher=" + teacher + ", title=" + title + "]";
-    }
+    } 
 
-    
+    public void printGroup(){
+        System.out.println("-----"+title+"-----");
+        for (Child child : allChildrenInGroup) {
+            System.out.println(child.getVards() + " " + child.getUzvards() + " | " + child.getPersonasKods());
+        }
+    }
 }

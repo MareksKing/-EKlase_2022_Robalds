@@ -1,10 +1,8 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
-public class Child extends Person {
+public class Child extends Person{
     private String alergies;
     private int priorityForSpeachLessons;
     private Nationality nationality;
@@ -86,6 +84,14 @@ public class Child extends Person {
     public String toString() {
         return "Child [ name=" +super.getVards() + ", surname= " +super.getUzvards() + ", nationality=" + nationality + ", priorityForSpeachLessons=" + priorityForSpeachLessons + ", alergies= " + getAlergies() + "]";
     }
+
+
+    // @Override
+    // public int compareTo(Child o) {
+    //     if(super.getVards().charAt(0) < o.getVards().charAt(0)){return -1;}
+    //     else if (super.getVards().charAt(0) > o.getVards().charAt(0)){return 1;}
+    //     else{return 0;}
+    // }
 
     
 
