@@ -75,14 +75,14 @@ public class Service {
         // for (Teacher teacher : allTeachers) {
         //     System.out.println(teacher);
         // }
-        removeTeacherByPK("050600-22504");
-        removeTeacherByID(301);
+        // removeTeacherByPK("050600-22504");
+        // removeTeacherByID(301);
 
-        for (Employee teacher : allEmployees) {
-            System.out.println(teacher);
-        }
-        // sortGroupBySurname(gr1);
-        // gr1.printGroup();
+        // for (Employee teacher : allEmployees) {
+        //     System.out.println(teacher);
+        // }
+        sortGroupBySurname(gr1);
+        gr1.printGroup();
 
     }
 
@@ -390,41 +390,6 @@ public class Service {
         }
     }
 
-    /**
-     * Sorts the children in the group by surname
-     * 
-     * @param group the group that you want to sort
-     */
-    // private static void sortGroupBySurname(Group group){
-    //     ArrayList<Child> allChildrenSorted = new ArrayList<>();
-    //     allChildrenSorted = group.getAllChildrenInGroup();
-        
-    //     for (Group gr : allGroups) {
-    //         if(gr == group){
-    //             String pUzvards;
-    //             String oUzvards;
-                
-    //             for (int i = 0; i < group.getAllChildrenInGroup().size(); i++) {
-    //                 for (int j = 0; j < group.getAllChildrenInGroup().size() - i - 1; j++) {
-    //                     pUzvards = group.getAllChildrenInGroup().get(j).getUzvards();
-    //                     oUzvards = group.getAllChildrenInGroup().get(j+1).getUzvards();
-
-    //                     Child pirmais = group.getAllChildrenInGroup().get(j);
-    //                     Child otrais = group.getAllChildrenInGroup().get(j+1);
-
-    //                     if(pUzvards.compareTo(oUzvards) > 0){
-    //                         Child temp = otrais;
-    //                         group.getAllChildrenInGroup().set(j + 1, pirmais);
-    //                         group.getAllChildrenInGroup().set(j, temp);
-    //                     }
-
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    // }
-
     private static void sortGroupBySurname(Group group){
         ArrayList<Child> allChildrenSorted = new ArrayList<>();
         allChildrenSorted = group.getAllChildrenInGroup();
@@ -433,14 +398,18 @@ public class Service {
             for (int j = 1; j < allChildrenSorted.size(); j++) {
                 String pUzv = allChildrenSorted.get(i).getUzvards();
                 String oUzv = allChildrenSorted.get(j).getUzvards();
-                System.out.println(pUzv.compareTo(oUzv));
-                if(pUzv.compareTo(oUzv) > 0){
+                //System.out.println(pUzv + " - " + oUzv + " = " + pUzv.compareTo(oUzv));
+                if(pUzv.compareTo(oUzv) != 0){
                     Child temp = allChildrenSorted.get(j);
                     allChildrenSorted.set(j, allChildrenSorted.get(i));
                     allChildrenSorted.set(i, temp);
+                    group.removeFromGroup(allChildrenSorted.get(i));
                 }
             }
         }
+        
+        group.setAllChildrenInGroup(allChildrenSorted);
+        
     }
 
 
