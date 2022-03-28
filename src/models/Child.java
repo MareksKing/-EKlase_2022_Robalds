@@ -19,7 +19,7 @@ public class Child extends Person{
      */
     public void setAlergies(String alergija) {
         if(alergija!=""){
-            this.alergies = alergija + "; ";
+            this.alergies = alergija;
         } else {
             this.alergies = "Nav";
         }

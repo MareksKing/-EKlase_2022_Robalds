@@ -1,24 +1,25 @@
 package service;
 
 import java.util.ArrayList;
-import java.util.Collections;
-
-import javax.print.attribute.standard.MediaSize.NA;
+import java.util.Random;
 
 import models.Child;
-import models.Person;
 import models.Employee;
 import models.SpeachTherapist;
 import models.Teacher;
 import models.TeachingLevel;
 import models.Group;
 import models.Nationality;
-import models.Person;
+
 
 /**
  * This class is a service that can be used to create and manage a database
  */
 public class Service {
+    private static String[] sideDish = {"Makaroni", "Kartupeļi", "Rīsi", "Griķi", "Grūbas", "Zirņi",};
+    private static String[] mainDish = {"Vistas fileja", "Steiks", "Vistas spārni", "Aknas stroganovs", "Maltā gaļa", "Zivs"};
+    private static String[] drinks = {"Piens", "Sula", "Ūdens"};
+    
     private static ArrayList<Employee> allEmployees = new ArrayList<>();
     private static ArrayList<Group> allGroups = new ArrayList<>();
     private static ArrayList<Teacher> allTeachers = new ArrayList<>();
@@ -44,43 +45,31 @@ public class Service {
         allSpeachTherapists.add(logopeds2);
         
         Group gr1 = new Group((short) 2023, "Gudrīši", mareks);
-        Child janis = new Child("Janis", "Polikovs", "211199-19987", 2, Nationality.Lithuanian, "Almond");
-        Child valentins = new Child("Valentins", "Salineks", "240299-22145", 3, Nationality.Latvian, "");
-        Child kristiana = new Child("Kristiana", "Berzina", "180300-22243", 1, Nationality.Latvian, "Lactose");
+        Child janis = new Child("Janis", "Polikovs", "211199-19987", 2, Nationality.Lithuanian, "Rieksti");
+        Child valentins = new Child("Valentins", "Salineks", "240299-22145", 3, Nationality.Latvian, "Zivs");
+        Child kristiana = new Child("Kristiana", "Berzina", "180300-22243", 1, Nationality.Latvian, "Piens");
         Child samanta = new Child("Samanta", "Buka", "170701-12432", 4, Nationality.Estonian, "");
         gr1.addToGroup(janis);
         gr1.addToGroup(valentins);
         gr1.addToGroup(kristiana);
         gr1.addToGroup(samanta);
         
-
+        
         // Group gr2 = new Group((short) 2024, "Skaistules", vilnis);
         // Child kristiana = new Child("Kristiāna", "Bērziņa", "180300-22243", 1, Nationality.Latvian, "Lactose");
         // Child samanta = new Child("Samanta", "Buka", "170701", 4, Nationality.Estonian, "");
         // gr2.addToGroup(kristiana);
         // gr2.addToGroup(samanta);
-
+        
         allChilds.add(janis);
         allChilds.add(valentins);
         allChilds.add(kristiana);
         allChilds.add(samanta);
+        System.out.println(generateLunch());
 
         allGroups.add(gr1);
-        // allGroups.add(gr2);
-        gr1.printGroup();
+        // gr1.printGroup();
 
-        // for (Child child : allChilds) {
-        //     System.out.println(child);
-        // }
-        // for (Teacher teacher : allTeachers) {
-        //     System.out.println(teacher);
-        // }
-        // removeTeacherByPK("050600-22504");
-        // removeTeacherByID(301);
-
-        // for (Employee teacher : allEmployees) {
-        //     System.out.println(teacher);
-        // }
         sortGroupBySurname(gr1);
         gr1.printGroup();
 
@@ -390,6 +379,11 @@ public class Service {
         }
     }
 
+/**
+ * Sorts the children in the group by surname
+ * 
+ * @param group the group that you want to sort
+ */
     private static void sortGroupBySurname(Group group){
         ArrayList<Child> allChildrenSorted = new ArrayList<>();
         allChildrenSorted = group.getAllChildrenInGroup();
@@ -406,12 +400,105 @@ public class Service {
                     group.removeFromGroup(allChildrenSorted.get(i));
                 }
             }
-        }
-        
-        group.setAllChildrenInGroup(allChildrenSorted);
-        
+        }  
+        group.setAllChildrenInGroup(allChildrenSorted);     
     }
 
+/**
+ * Generate a lunch for the children based on their alergies
+ * 
+ * @return Lunch
+ */
+    private static String generateLunch(){
+        String lunch = "";
+        ArrayList<String> alergies = new ArrayList<>();
+        
+        for (Child child : allChilds) {
+            alergies.add(child.getAlergies());
+        }
 
+        Random rand = new Random();
+        int sideList = sideDish.length;
+        int sideList_random = rand.nextInt(sideList);
+        lunch += getSideDish(alergies, sideList_random) + " ar ";
+
+        int mainList = mainDish.length;
+        int mainList_random = rand.nextInt(mainList);
+        lunch += getMainDish(alergies, mainList_random) + " un ";
+
+        int drinkList = drinks.length;
+        int drinkList_random = rand.nextInt(drinkList);
+        lunch += getDrink(alergies, drinkList_random);
+
+
+        return lunch;
+    }
+
+/**
+ * "Get a random side dish that doesn't contain any of the alergies in the given list."
+ * 
+ * @param alergies an ArrayList of Strings that contains the alergies of all children.
+ * @param rand The random number that is generated from the random number generator.
+ * @return The side dish that is not in the list of alergies.
+ */
+    private static String getSideDish(ArrayList<String> alergies, int rand){
+        String sideDish = Service.sideDish[rand];
+        for (String aler : alergies) {
+            if(sideDish.equals(aler)){
+                System.out.println("Bērnam aleģija - SIDE");
+                if(Service.sideDish.length - 1 == rand){
+                    sideDish = Service.sideDish[0];
+                } else{
+                    sideDish = Service.sideDish[rand+1];
+                }
+            }
+        }
+        return sideDish;
+    }
+
+/**
+ * "Get a random main dish that doesn't contain any of the alergies in the given list."
+ * 
+ * @param alergies an ArrayList of Strings that contains the alergies of all children.
+ * @param rand The random number that is generated from the random number generator.
+ * @return The main dish that is not in the list of alergies.
+ */
+    private static String getMainDish(ArrayList<String> alergies, int rand){
+        String mainDish = Service.mainDish[rand];
+        for (String aler : alergies) {
+            if(mainDish.equals(aler)){
+                System.out.println("Bērnam aleģija - MAIN");
+                if(Service.mainDish.length - 1 == rand){
+                    mainDish = Service.mainDish[0];
+                } else{
+                    mainDish = Service.mainDish[rand+1];
+                }
+                
+            }
+        }
+        return mainDish;
+    }
+
+/**
+ * "Get a random drink that doesn't contain any of the alergies in the given list."
+ * 
+ * @param alergies an ArrayList of Strings that contains the alergies of all children.
+ * @param rand The random number that is generated from the random number generator.
+ * @return The drink that is not in the list of alergies.
+ */
+    private static String getDrink(ArrayList<String> alergies, int rand){
+        String drink = Service.drinks[rand];
+        for (String aler : alergies) {
+            if(drink.equals(aler)){
+                System.out.println("Bērnam aleģija - DRINKS");
+                if(Service.drinks.length - 1 == rand){
+                    drink = Service.drinks[0];
+                } else{
+                    drink = Service.drinks[rand+1];
+                }
+            }
+        }
+        return drink;
+    }
 
 }
