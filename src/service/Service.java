@@ -161,30 +161,34 @@ public class Service {
         addChildToGroup(allChilds.get(allChilds.size()-1), gudrisi); //Pievieno bērnu grupai (Pievieno bērnu @ Line 105)
         removeChildFromGroup(emils, jauninie); //Noņem bērnu no grupiņas
         changeGroup(anna, svaigie, jauninie); //Pārmaina bērna grupiņu
-        // subscribeChildToSpeachLessonsByPK("300703-11791", logopeds); //Pievieno bērnu pie logopēda sesijas
-        System.out.println("------------------------");
+        // subscribeChildToSpeachLessonsByPK("300703-11791", logopeds); //Pievieno bērnu pie logopēda sesijas (nestrāda ATM)
+        System.out.println("----------------------------------------------------------------");
         showAllTeachers(); //Izvada visus skolotājus
-        System.out.println("------------------------");
+        System.out.println("----------------------------------------------------------------");
         showAllSpeachTherapist(); //Izvada visus logopēdus
-        System.out.println("------------------------");
+        System.out.println("-----------------------------------------------------------");
         showAllChildrenInGroup(jauninie); //Izvada visus bērnus Jauniņo grupā
-        System.out.println("------------------------");
+        System.out.println("-----------------------------------------------------------");
         showAllChildrenInSpeachLessonsByTherapistPK("231200-22523"); //Izvada visus bērnus pie logopēda sesijām
-        System.out.println("------------------------");
+        System.out.println("-----------------------------------------------------------");
         showAllChildrenByGroupStartYear((short) 2023); //Izvada visus bērnus kuri ir grupās ar padoto sākuma gadu
-        System.out.println("------------------------");
+        
+        System.out.println();
         sortGroupBySurname(gudrisi); //Sakārto bērnus pēc uzvārdiem
         gudrisi.printGroup(); //Izvada grupu noformētu
-        System.out.println("------------------------");
+        
+        System.out.println();
         sortGroupBySurname(forsie); //Sakārto bērnus pēc uzvārdiem
         forsie.printGroup(); //Izvada grupu noformētu
-        System.out.println("------------------------");
+        
+        System.out.println();
         sortGroupBySurname(jauninie); //Sakārto bērnus pēc uzvārdiem
         jauninie.printGroup(); //Izvada grupu noformētu
-        System.out.println("------------------------");
+        
+        System.out.println();
         sortGroupBySurname(svaigie); //Sakārto bērnus pēc uzvārdiem
         svaigie.printGroup(); //Izvada grupu noformētu
-        System.out.println("------------------------");
+        System.out.println("----------------------------------------------");
 
         System.out.println("Pusdienās būs: " +generateLunch()); //Ģenerē pusdienas ievērojot bērnu alerģijas    
 
@@ -369,12 +373,13 @@ public class Service {
         return false;
     }
 
+
 /**
- * Add a child to a group if the child is not already in the group
+ * Add a child to a group
  * 
- * @param child The child to add to the group.
+ * @param child The child to be added to the group.
  * @param group The group to add the child to.
- * @return The boolean value of whether or not the child was added to the group.
+ * @return The boolean value of whether the child was added to the group or not.
  */
     private static boolean addChildToGroup(Child child, Group group){
         ArrayList<Child> childrenInGroup = new ArrayList<>();

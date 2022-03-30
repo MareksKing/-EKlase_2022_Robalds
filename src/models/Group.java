@@ -137,7 +137,7 @@ public class Group {
     }
 
     public void printGroup(){
-        System.out.println("-----"+title+"-----");
+        System.out.printf("------------------ %-5s -------------------%n", title);
         for (Child child : allChildrenInGroup) {
             System.out.printf("[Child: %-10s %-10s|  %-13s]%n", child.getVards(), child.getUzvards(), child.getPersonasKods());
         }
