@@ -1,10 +1,8 @@
 package service;
 
-import java.nio.file.attribute.GroupPrincipal;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import models.Child;
 import models.Employee;
@@ -149,46 +147,46 @@ public class Service {
         allGroups.add(jauninie);
         allGroups.add(svaigie);
 
-        addNewTeacher("Lauris", "Maigonis", "121280-18888", 2025, 10, 15, TeachingLevel.Youngchild);
-        addNewSpeachTherapist("Es", "Tu jau zini", "123456-78901", 2024, 2, 3, "Articulation");
-        addNewChild("Sikais", "Perdelis", "140299-11111", 2, Nationality.Latvian, "Makaroni");
-        addNewGroup((short) 2025, "Smukumini", allTeachers.get(allTeachers.size()-1));
+        addNewTeacher("Lauris", "Maigonis", "121280-18888", 2025, 10, 15, TeachingLevel.Youngchild); //Pievieno jaunu skolotāju
+        addNewSpeachTherapist("Es", "Tu jau zini", "123456-78901", 2024, 2, 3, "Articulation"); //Pievieno jaunu logopēdu
+        addNewChild("Sikais", "Perdelis", "140299-11111", 2, Nationality.Latvian, "Makaroni"); //Pievieno jaunu bērnu
+        addNewGroup((short) 2025, "Smukumini", allTeachers.get(allTeachers.size()-1)); //Pievieno jaunu grupu
 
-        removeTeacherByPK("121280-18888");
-        removeTeacherByID(allTeachers.get(3).getEmployeeId());
-        removeTherapistByPK("040389-15523");
-        removeTherapistByID(allSpeachTherapists.get(2).getEmployeeId());
-        removeChildByPK("140299-11111");
-        removeGroupByYearTitleAndYear(2025, "Smukumini", allTeachers.get(allTeachers.size()-1));
-        addChildToGroup(allChilds.get(allChilds.size()-1), gudrisi);
-        removeChildFromGroup(emils, jauninie);
-        changeGroup(anna, svaigie, jauninie);
-        // subscribeChildToSpeachLessonsByPK("300703-11791", logopeds);
+        removeTeacherByPK("121280-18888"); //Noņem skolotāju pēc PK (Noņem skolotāju @ Line:150)
+        removeTeacherByID(allTeachers.get(3).getEmployeeId()); // Noņem skolotāju pēc darbinieka ID (Noņem skolotāju @ Line:51)
+        removeTherapistByPK("040389-15523"); // Noņem logopēdu pēc PK (Noņem logopēdu @ Line:38)
+        removeTherapistByID(allSpeachTherapists.get(2).getEmployeeId()); //Noņem logopēdu pēc ID (Noņem logopēdu @ Line:151)
+        removeChildByPK("140299-11111"); //Noņem bērnu pēc PK (Noņem bērnu @ Line 152)
+        removeGroupByYearTitleAndYear(2025, "Smukumini", allTeachers.get(allTeachers.size()-1)); //Noņem grupu pēc tā gada, nosaukuma un skolotāja (Noņem grupu @ Line 153)
+        addChildToGroup(allChilds.get(allChilds.size()-1), gudrisi); //Pievieno bērnu grupai (Pievieno bērnu @ Line 105)
+        removeChildFromGroup(emils, jauninie); //Noņem bērnu no grupiņas
+        changeGroup(anna, svaigie, jauninie); //Pārmaina bērna grupiņu
+        // subscribeChildToSpeachLessonsByPK("300703-11791", logopeds); //Pievieno bērnu pie logopēda sesijas
         System.out.println("------------------------");
-        showAllTeachers();
+        showAllTeachers(); //Izvada visus skolotājus
         System.out.println("------------------------");
-        showAllSpeachTherapist();
+        showAllSpeachTherapist(); //Izvada visus logopēdus
         System.out.println("------------------------");
-        showAllChildrenInGroup(jauninie);
+        showAllChildrenInGroup(jauninie); //Izvada visus bērnus Jauniņo grupā
         System.out.println("------------------------");
-        showAllChildrenInSpeachLessonsByTherapistPK("231200-22523");
+        showAllChildrenInSpeachLessonsByTherapistPK("231200-22523"); //Izvada visus bērnus pie logopēda sesijām
         System.out.println("------------------------");
-        showAllChildrenByGroupStartYear((short) 2023);
+        showAllChildrenByGroupStartYear((short) 2023); //Izvada visus bērnus kuri ir grupās ar padoto sākuma gadu
         System.out.println("------------------------");
-        sortGroupBySurname(gudrisi);
-        gudrisi.printGroup();
+        sortGroupBySurname(gudrisi); //Sakārto bērnus pēc uzvārdiem
+        gudrisi.printGroup(); //Izvada grupu noformētu
         System.out.println("------------------------");
-        sortGroupBySurname(forsie);
-        forsie.printGroup();
+        sortGroupBySurname(forsie); //Sakārto bērnus pēc uzvārdiem
+        forsie.printGroup(); //Izvada grupu noformētu
         System.out.println("------------------------");
-        sortGroupBySurname(jauninie);
-        jauninie.printGroup();
+        sortGroupBySurname(jauninie); //Sakārto bērnus pēc uzvārdiem
+        jauninie.printGroup(); //Izvada grupu noformētu
         System.out.println("------------------------");
-        sortGroupBySurname(svaigie);
-        svaigie.printGroup();
+        sortGroupBySurname(svaigie); //Sakārto bērnus pēc uzvārdiem
+        svaigie.printGroup(); //Izvada grupu noformētu
         System.out.println("------------------------");
 
-        System.out.println("Pusdienās būs: " +generateLunch());        
+        System.out.println("Pusdienās būs: " +generateLunch()); //Ģenerē pusdienas ievērojot bērnu alerģijas    
 
         
     }
@@ -381,6 +379,11 @@ public class Service {
     private static boolean addChildToGroup(Child child, Group group){
         ArrayList<Child> childrenInGroup = new ArrayList<>();
         childrenInGroup = group.getAllChildrenInGroup();
+        for (Group grupa : allGroups) {
+            for (Child ch : grupa.getAllChildrenInGroup()) {
+                if(ch == child) {grupa.removeFromGroup(child);}
+            }
+        }
         if(childrenInGroup.contains(child) == false){
             group.addToGroup(child);
             return true;
@@ -513,13 +516,11 @@ public class Service {
  * @param group the group that you want to sort
  */
     private static void sortGroupBySurname(Group group){
-        ArrayList<Child> allChildrenSorted = new ArrayList<>();
-        allChildrenSorted = group.getAllChildrenInGroup();
         
         if(allGroups.contains(group)){
             Child pChild, oChild;
             for (int i = 0; i < group.getAllChildrenInGroup().size(); i++) {
-                for (int j = 0; j < group.getAllChildrenInGroup().size(); j++) {
+                for (int j = 1; j < group.getAllChildrenInGroup().size(); j++) {
                     pChild = group.getAllChildrenInGroup().get(i);
                     oChild = group.getAllChildrenInGroup().get(j);
                     if(pChild.getUzvards().compareTo(oChild.getUzvards()) > 0){

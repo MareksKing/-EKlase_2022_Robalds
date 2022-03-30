@@ -3,7 +3,7 @@ package models;
 import java.util.PriorityQueue;
 
 public class SpeachTherapist extends Employee{
-    PriorityQueue<Child> AllChildrenAtSpeachLessons = new PriorityQueue<>();
+    private PriorityQueue<Child> AllChildrenAtSpeachLessons = new PriorityQueue<>();
     private String workingMethods;
 
     public void setAllChildrenAtSpeachLessons(PriorityQueue<Child> allChildren){
@@ -38,7 +38,7 @@ public class SpeachTherapist extends Employee{
 
     @Override
     public String toString() {
-        return "SpeachTherapist [workingMethods=" + workingMethods + "]";
+        return String.format("[STR: %-10s %-10s | %-20s]", super.getVards(), super.getUzvards(), workingMethods);
     }
 
     public void addChildByPriority(Child child){

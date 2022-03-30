@@ -35,7 +35,7 @@ public class Teacher extends Employee {
 
     @Override
     public String toString() {
-        return "Teacher [" + "name= " + super.getVards() + ", surname= " + super.getUzvards() + ",personas kods= " + super.getPersonasKods() + ", teachLVL=" + teachLVL + "]";
+        return String.format("[Teacher: %-10s %-10s | %-13s | %-12s]", super.getVards(), super.getUzvards(), super.getPersonasKods(), teachLVL);
     }
 
     

@@ -139,7 +139,7 @@ public class Group {
     public void printGroup(){
         System.out.println("-----"+title+"-----");
         for (Child child : allChildrenInGroup) {
-            System.out.println(child.getVards() + " " + child.getUzvards() + " | " + child.getPersonasKods());
+            System.out.printf("[Child: %-10s %-10s|  %-13s]%n", child.getVards(), child.getUzvards(), child.getPersonasKods());
         }
     }
     

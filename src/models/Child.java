@@ -82,17 +82,7 @@ public class Child extends Person{
 
     @Override
     public String toString() {
-        return "Child [ name=" +super.getVards() + ", surname= " +super.getUzvards() + ", nationality=" + nationality + ", priorityForSpeachLessons=" + priorityForSpeachLessons + ", alergies= " + getAlergies() + "]";
+        return String.format("[Child: %-10s %-10s | %-10s | %-2s | %-8s]", super.getVards(), super.getUzvards(), nationality, priorityForSpeachLessons, getAlergies());
     }
-
-
-    // @Override
-    // public int compareTo(Child o) {
-    //     if(super.getVards().charAt(0) < o.getVards().charAt(0)){return -1;}
-    //     else if (super.getVards().charAt(0) > o.getVards().charAt(0)){return 1;}
-    //     else{return 0;}
-    // }
-
-    
 
 }
