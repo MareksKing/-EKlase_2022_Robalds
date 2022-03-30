@@ -1,7 +1,10 @@
 package service;
 
+import java.nio.file.attribute.GroupPrincipal;
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import models.Child;
 import models.Employee;
@@ -27,52 +30,167 @@ public class Service {
     private static ArrayList<SpeachTherapist> allSpeachTherapists = new ArrayList<>();
     
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
         
         Teacher mareks = new Teacher("Mareks", "Robalds", "050600-22504", 2023, 4, 23, TeachingLevel.Youngchild);
         Teacher vilnis = new Teacher("Vilnis", "Lībeks", "310300-21345", 2024, 5, 2, TeachingLevel.Youngchild);
+        Teacher roberts = new Teacher("Roberts", "Steinbergs", "230197-18773", 2022, 3, 23, TeachingLevel.Preschool);
+        Teacher sofija = new Teacher("Sofija", "Lenberta", "170601-25054", 2023, 4, 6, TeachingLevel.Toddler);
         SpeachTherapist logopeds = new SpeachTherapist("Jana", "Robalde", "231200-22523" , 2022, 2, 25, "Articulation");
         SpeachTherapist logopeds2 = new SpeachTherapist("Daniels", "Fišers", "180199-16875", 2023, 3, 1, "Oral Motor Therapy");
+        SpeachTherapist logopeds3 = new SpeachTherapist("Alise", "Zarkovka", "040389-15523", 2024, 1, 1, "VetalStim Therapy");
+        
         allEmployees.add(mareks);
         allEmployees.add(vilnis);
+        allEmployees.add(roberts);
+        allEmployees.add(sofija);
         allEmployees.add(logopeds);
         allEmployees.add(logopeds2);
+        allEmployees.add(logopeds3);
 
         allTeachers.add(mareks);
         allTeachers.add(vilnis);
+        allTeachers.add(roberts);
+        allTeachers.add(sofija);
 
         allSpeachTherapists.add(logopeds);
         allSpeachTherapists.add(logopeds2);
+        allSpeachTherapists.add(logopeds3);
         
-        Group gr1 = new Group((short) 2023, "Gudrīši", mareks);
+        //Pirma grupa
         Child janis = new Child("Janis", "Polikovs", "211199-19987", 2, Nationality.Lithuanian, "Rieksti");
         Child valentins = new Child("Valentins", "Salineks", "240299-22145", 3, Nationality.Latvian, "Zivs");
         Child kristiana = new Child("Kristiana", "Berzina", "180300-22243", 1, Nationality.Latvian, "Piens");
         Child samanta = new Child("Samanta", "Buka", "170701-12432", 4, Nationality.Estonian, "");
-        gr1.addToGroup(janis);
-        gr1.addToGroup(valentins);
-        gr1.addToGroup(kristiana);
-        gr1.addToGroup(samanta);
-        
-        
-        // Group gr2 = new Group((short) 2024, "Skaistules", vilnis);
-        // Child kristiana = new Child("Kristiāna", "Bērziņa", "180300-22243", 1, Nationality.Latvian, "Lactose");
-        // Child samanta = new Child("Samanta", "Buka", "170701", 4, Nationality.Estonian, "");
-        // gr2.addToGroup(kristiana);
-        // gr2.addToGroup(samanta);
-        
+        Child marta = new Child("Marta", "Dombrovska", "220201-33123", 3, Nationality.Latvian, "Olas");
+        Child markuss = new Child("Markuss", "Storovs", "021100-31221", 5, Nationality.Lithuanian, "");
         allChilds.add(janis);
         allChilds.add(valentins);
         allChilds.add(kristiana);
         allChilds.add(samanta);
-        System.out.println(generateLunch());
+        allChilds.add(marta);
+        allChilds.add(markuss);
 
-        allGroups.add(gr1);
-        // gr1.printGroup();
+        //Otra grupa
+        Child gatis = new Child("Gatis", "Kandis", "241202-19287", 6, Nationality.Latvian, "");
+        Child elvis = new Child("Elvis", "Preslijs", "270501-25445", 6, Nationality.Latvian, "");
+        Child laura = new Child("Laura", "Lagzdina", "150801-21243", 5, Nationality.Latvian, "");
+        Child santa = new Child("Santa", "Tanka", "170202-12932", 4, Nationality.Latvian, "");
+        Child jana = new Child("Jana", "Velta", "020400-13123", 6, Nationality.Latvian, "");
+        Child pauls = new Child("Pauls", "Traks", "021203-31671", 5, Nationality.Latvian, "");
+        allChilds.add(gatis);
+        allChilds.add(elvis);
+        allChilds.add(laura);
+        allChilds.add(santa);
+        allChilds.add(jana);
+        allChilds.add(pauls);
 
-        sortGroupBySurname(gr1);
-        gr1.printGroup();
+        //Treša grupa
+        Child emils = new Child("Emils", "Abrams", "301102-13127", 1, Nationality.Estonian, "Rieksti");
+        Child gustavs = new Child("Gustavs", "Bers", "100102-25555", 2, Nationality.Latvian, "Zivs");
+        Child adrians = new Child("Adrians", "Biels", "150601-28743", 3, Nationality.Latvian, "Piens");
+        Child ernests = new Child("Ernests", "Ozols", "190303-37432", 4, Nationality.Estonian, "");
+        Child ralfs = new Child("Ralfs", "Kalns", "290802-10123", 5, Nationality.Latvian, "Olas");
+        Child paula = new Child("Paula", "Liepa", "171201-31201", 6, Nationality.Estonian, "");
+        allChilds.add(emils);
+        allChilds.add(gustavs);
+        allChilds.add(adrians);
+        allChilds.add(ernests);
+        allChilds.add(ralfs);
+        allChilds.add(paula);
 
+        //Ceturta grupa
+        Child anna = new Child("Anna", "Cerina", "021103-15287", 2, Nationality.Lithuanian, "Rieksti");
+        Child darta = new Child("Darta", "Abele", "250603-21745", 3, Nationality.Latvian, "Zivs");
+        Child eliza = new Child("Eliza", "Berzina", "111202-28843", 3, Nationality.Lithuanian, "Piens");
+        Child marija = new Child("Marija", "Kaspare", "150903-37432", 4, Nationality.Estonian, "");
+        Child arturs = new Child("Arturs", "Ridus", "140104-22723", 3, Nationality.Estonian, "Olas");
+        Child rihards = new Child("Rihards", "Uzbeks", "300703-11791", 4, Nationality.Lithuanian, "");
+        allChilds.add(anna);
+        allChilds.add(darta);
+        allChilds.add(eliza);
+        allChilds.add(marija);
+        allChilds.add(arturs);
+        allChilds.add(rihards);
+
+        Group gudrisi = new Group((short) 2023, "Gudrīši", mareks);
+        gudrisi.addToGroup(marta);
+        gudrisi.addToGroup(markuss);
+        gudrisi.addToGroup(janis);
+        gudrisi.addToGroup(valentins);
+        gudrisi.addToGroup(kristiana);
+        gudrisi.addToGroup(samanta);
+
+        Group forsie = new Group((short) 2023, "Foršie", vilnis);
+        forsie.addToGroup(gatis);
+        forsie.addToGroup(elvis);
+        forsie.addToGroup(laura);
+        forsie.addToGroup(santa);
+        forsie.addToGroup(jana);
+        forsie.addToGroup(pauls);
+
+        Group jauninie = new Group((short) 2024, "Jauniņie", roberts);
+        jauninie.addToGroup(emils);
+        jauninie.addToGroup(gustavs);
+        jauninie.addToGroup(adrians);
+        jauninie.addToGroup(ernests);
+        jauninie.addToGroup(ralfs);
+        jauninie.addToGroup(paula);
+
+        Group svaigie = new Group((short) 2025, "Svaigie", sofija);
+        svaigie.addToGroup(anna);
+        svaigie.addToGroup(darta);
+        svaigie.addToGroup(eliza);
+        svaigie.addToGroup(marija);
+        svaigie.addToGroup(arturs);
+        svaigie.addToGroup(rihards);
+
+        allGroups.add(gudrisi);
+        allGroups.add(forsie);
+        allGroups.add(jauninie);
+        allGroups.add(svaigie);
+
+        addNewTeacher("Lauris", "Maigonis", "121280-18888", 2025, 10, 15, TeachingLevel.Youngchild);
+        addNewSpeachTherapist("Es", "Tu jau zini", "123456-78901", 2024, 2, 3, "Articulation");
+        addNewChild("Sikais", "Perdelis", "140299-11111", 2, Nationality.Latvian, "Makaroni");
+        addNewGroup((short) 2025, "Smukumini", allTeachers.get(allTeachers.size()-1));
+
+        removeTeacherByPK("121280-18888");
+        removeTeacherByID(allTeachers.get(3).getEmployeeId());
+        removeTherapistByPK("040389-15523");
+        removeTherapistByID(allSpeachTherapists.get(2).getEmployeeId());
+        removeChildByPK("140299-11111");
+        removeGroupByYearTitleAndYear(2025, "Smukumini", allTeachers.get(allTeachers.size()-1));
+        addChildToGroup(allChilds.get(allChilds.size()-1), gudrisi);
+        removeChildFromGroup(emils, jauninie);
+        changeGroup(anna, svaigie, jauninie);
+        // subscribeChildToSpeachLessonsByPK("300703-11791", logopeds);
+        System.out.println("------------------------");
+        showAllTeachers();
+        System.out.println("------------------------");
+        showAllSpeachTherapist();
+        System.out.println("------------------------");
+        showAllChildrenInGroup(jauninie);
+        System.out.println("------------------------");
+        showAllChildrenInSpeachLessonsByTherapistPK("231200-22523");
+        System.out.println("------------------------");
+        showAllChildrenByGroupStartYear((short) 2023);
+        System.out.println("------------------------");
+        sortGroupBySurname(gudrisi);
+        gudrisi.printGroup();
+        System.out.println("------------------------");
+        sortGroupBySurname(forsie);
+        forsie.printGroup();
+        System.out.println("------------------------");
+        sortGroupBySurname(jauninie);
+        jauninie.printGroup();
+        System.out.println("------------------------");
+        sortGroupBySurname(svaigie);
+        svaigie.printGroup();
+        System.out.println("------------------------");
+
+        System.out.println("Pusdienās būs: " +generateLunch());        
+
+        
     }
 
 
@@ -141,9 +259,9 @@ public class Service {
 /**
  * Add a new group to the list of all groups
  * 
- * @param year the year of the group (e.g. 2019)
+ * @param year The year of the group.
  * @param title the title of the group (e.g. "Math")
- * @param teacher The teacher who will be teaching the group.
+ * @param teacher The teacher who created the group.
  * @return The boolean value of whether the group was added or not.
  */
     private static boolean addNewGroup(short year, String title, Teacher teacher){
@@ -295,7 +413,7 @@ public class Service {
  * @param uzGrupa the group that the child will be added to
  * @return Nothing.
  */
-    private static boolean ChangeGroup(Child child, Group noGrupa, Group uzGrupa){
+    private static boolean changeGroup(Child child, Group noGrupa, Group uzGrupa){
         ArrayList<Child> fromChildrenInGroup = new ArrayList<>();
         ArrayList<Child> toChildrenInGroup = new ArrayList<>();
         fromChildrenInGroup = noGrupa.getAllChildrenInGroup();
@@ -355,13 +473,21 @@ public class Service {
  * @param group The group to show the children of.
  */
     private static void showAllChildrenInGroup(Group group){
-        group.getAllChildrenInGroup();
+        if(allGroups.contains(group) == false) return;
+        for (Child child : group.getAllChildrenInGroup()) {
+            System.out.println(child);
+        }
     }
 
+/**
+ * Show all children in speach lessons by therapist PK
+ * 
+ * @param personas_kods The therapist's personas_kods
+ */
     private static void showAllChildrenInSpeachLessonsByTherapistPK(String personas_kods){
         for (SpeachTherapist therapist : allSpeachTherapists) {
             if(therapist.getPersonasKods() == personas_kods){
-                therapist.getAllChildrenAtSpeachLessons();
+                System.out.println(therapist.getAllChildrenAtSpeachLessons());            
             }
         }
     }
@@ -374,7 +500,9 @@ public class Service {
     private static void showAllChildrenByGroupStartYear(short gads){
         for (Group group : allGroups) {
             if(group.getGroupStartYear() == gads){
-                group.getAllChildrenInGroup();
+                for (Child child : group.getAllChildrenInGroup()) {
+                    System.out.println(child);
+                }
             }
         }
     }
@@ -387,22 +515,25 @@ public class Service {
     private static void sortGroupBySurname(Group group){
         ArrayList<Child> allChildrenSorted = new ArrayList<>();
         allChildrenSorted = group.getAllChildrenInGroup();
-
-        for (int i = 0; i < allChildrenSorted.size(); i++) {
-            for (int j = 1; j < allChildrenSorted.size(); j++) {
-                String pUzv = allChildrenSorted.get(i).getUzvards();
-                String oUzv = allChildrenSorted.get(j).getUzvards();
-                //System.out.println(pUzv + " - " + oUzv + " = " + pUzv.compareTo(oUzv));
-                if(pUzv.compareTo(oUzv) != 0){
-                    Child temp = allChildrenSorted.get(j);
-                    allChildrenSorted.set(j, allChildrenSorted.get(i));
-                    allChildrenSorted.set(i, temp);
-                    group.removeFromGroup(allChildrenSorted.get(i));
+        
+        if(allGroups.contains(group)){
+            Child pChild, oChild;
+            for (int i = 0; i < group.getAllChildrenInGroup().size(); i++) {
+                for (int j = 0; j < group.getAllChildrenInGroup().size(); j++) {
+                    pChild = group.getAllChildrenInGroup().get(i);
+                    oChild = group.getAllChildrenInGroup().get(j);
+                    if(pChild.getUzvards().compareTo(oChild.getUzvards()) > 0){
+                        //System.out.println("Salidzina " + pChild.getUzvards() + " & " + oChild.getUzvards());
+                        Child temp = oChild;
+                        group.getAllChildrenInGroup().set(j, pChild);
+                        group.getAllChildrenInGroup().set(i, temp);
+                    }
                 }
             }
-        }  
-        group.setAllChildrenInGroup(allChildrenSorted);     
+        }
+    
     }
+
 
 /**
  * Generate a lunch for the children based on their alergies
@@ -435,7 +566,7 @@ public class Service {
     }
 
 /**
- * "Get a random side dish that doesn't contain any of the alergies in the given list."
+ * Get a random side dish that doesn't contain any of the alergies in the given list.
  * 
  * @param alergies an ArrayList of Strings that contains the alergies of all children.
  * @param rand The random number that is generated from the random number generator.
@@ -445,7 +576,7 @@ public class Service {
         String sideDish = Service.sideDish[rand];
         for (String aler : alergies) {
             if(sideDish.equals(aler)){
-                System.out.println("Bērnam aleģija - SIDE");
+                //System.out.println("Bērnam aleģija - SIDE");
                 if(Service.sideDish.length - 1 == rand){
                     sideDish = Service.sideDish[0];
                 } else{
@@ -457,7 +588,7 @@ public class Service {
     }
 
 /**
- * "Get a random main dish that doesn't contain any of the alergies in the given list."
+ * Get a random main dish that doesn't contain any of the alergies in the given list.
  * 
  * @param alergies an ArrayList of Strings that contains the alergies of all children.
  * @param rand The random number that is generated from the random number generator.
@@ -467,7 +598,7 @@ public class Service {
         String mainDish = Service.mainDish[rand];
         for (String aler : alergies) {
             if(mainDish.equals(aler)){
-                System.out.println("Bērnam aleģija - MAIN");
+                //System.out.println("Bērnam aleģija - MAIN");
                 if(Service.mainDish.length - 1 == rand){
                     mainDish = Service.mainDish[0];
                 } else{
@@ -480,7 +611,7 @@ public class Service {
     }
 
 /**
- * "Get a random drink that doesn't contain any of the alergies in the given list."
+ * Get a random drink that doesn't contain any of the alergies in the given list.
  * 
  * @param alergies an ArrayList of Strings that contains the alergies of all children.
  * @param rand The random number that is generated from the random number generator.
@@ -490,7 +621,7 @@ public class Service {
         String drink = Service.drinks[rand];
         for (String aler : alergies) {
             if(drink.equals(aler)){
-                System.out.println("Bērnam aleģija - DRINKS");
+                //System.out.println("Bērnam aleģija - DRINKS");
                 if(Service.drinks.length - 1 == rand){
                     drink = Service.drinks[0];
                 } else{

@@ -2,8 +2,9 @@ package models;
 
 import java.util.ArrayList;
 
+
 public class Group {
-    private static ArrayList<Child> allChildrenInGroup = new ArrayList<>();
+    private ArrayList<Child> allChildrenInGroup = new ArrayList<>();
     private short groupStartYear = 2022;
     private String title;
     private Teacher teacher;
@@ -62,15 +63,28 @@ public class Group {
         }
     }
 
+/**
+ * Add a child to the group
+ * 
+ * @param child The child to add to the group.
+ * @return The boolean value of whether or not the child was added to the group.
+ */
     public boolean addToGroup(Child child){
         if(allChildrenInGroup.contains(child)){
             return false;
         } else {
-            allChildrenInGroup.add(child);
+            //allChildrenInGroup.add(child);
+            this.allChildrenInGroup.add(child);
             return true;
         }
     }
 
+/**
+ * Remove a child from the group
+ * 
+ * @param child The child to be removed from the group.
+ * @return The boolean value of whether or not the child was removed from the group.
+ */
     public boolean removeFromGroup(Child child){
         if(allChildrenInGroup.contains(child)){
             allChildrenInGroup.remove(child);
@@ -80,15 +94,25 @@ public class Group {
         }
     }
 
+/**
+ * * Set the list of all children in the group
+ * 
+ * @param allChildren The list of all children in the group.
+ */
     public void setAllChildrenInGroup(ArrayList<Child> allChildren){
         for (Child child : allChildren) {
             allChildrenInGroup.add(child);
         }
     }
 
+/**
+ * Returns all the children in the group
+ * 
+ * @return An ArrayList of all the children in the group.
+ */
     public ArrayList<Child> getAllChildrenInGroup(){
         ArrayList<Child> allChildren = new ArrayList<>();
-        for (Child child : allChildrenInGroup) {
+        for (Child child : allChildrenInGroup) {    
             allChildren.add(child);
         }
         return allChildren;
@@ -98,20 +122,19 @@ public class Group {
         setGroupStartYear(groupYear);
         setTitle(title);
         setTeacher(teacher);  
-        setAllChildrenInGroup(allChildrenInGroup); 
     }
 
     public Group(){
+
         setGroupStartYear((short)2022);
         setTitle("Kamenīte");
         setTeacher(new Teacher());
-        setAllChildrenInGroup(allChildrenInGroup);
     }
 
     @Override
     public String toString() {
         return "Group [groupStartYear=" + groupStartYear + ", teacher=" + teacher + ", title=" + title + "]";
-    } 
+    }
 
     public void printGroup(){
         System.out.println("-----"+title+"-----");
@@ -119,4 +142,5 @@ public class Group {
             System.out.println(child.getVards() + " " + child.getUzvards() + " | " + child.getPersonasKods());
         }
     }
+    
 }
